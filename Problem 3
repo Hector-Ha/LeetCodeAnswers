@@ -1,0 +1,25 @@
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var lengthOfLongestSubstring = function (s) {
+  let finalString = "";
+  let subFinalString = "";
+
+  for (charPosition in s) {
+    if (!subFinalString.includes(s[charPosition])) {
+      subFinalString += s[charPosition];
+    } else {
+      if (subFinalString.length > finalString.length) {
+        finalString = subFinalString;
+      }
+      subFinalString =
+        subFinalString.slice(subFinalString.indexOf(s[charPosition]) + 1) +
+        s[charPosition];
+    }
+  }
+  if (subFinalString.length > finalString.length) {
+    finalString = subFinalString;
+  }
+  return finalString.length;
+};
