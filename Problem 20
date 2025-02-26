@@ -1,0 +1,29 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+    let storeArr = new Array();
+
+    let storeMap = new Map([
+        ["(", ")"],
+        ["[", "]"],
+        ["{", "}"],
+    ]);
+
+    if (s.length % 2 == 1) {
+        return false;
+    }
+
+    for (char of s) {
+        if (storeMap.has(char)) {
+            storeArr.push(char);
+        } else {
+            if (storeMap.get(storeArr[storeArr.length - 1]) == char) {
+                storeArr.pop();
+            } else return false;
+        }
+
+    }
+    if (storeArr.length == 0) { return true } else { return false };
+};
